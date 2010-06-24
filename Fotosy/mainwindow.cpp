@@ -29,8 +29,9 @@ void MainWindow::changeEvent(QEvent *e)
 
 void MainWindow::prepareDirView()
 {
+    QFileInfoList aa =  QDir::drives();
     model = new QFileSystemModel;
-    model->setRootPath(QDir::currentPath());
+    model->setRootPath(QDir::rootPath());
     model->setFilter(QDir::Dirs | QDir::Drives | QDir::NoDotAndDotDot);
     ui->treeView->setModel(model);
     ui->treeView->hideColumn(1);
@@ -40,7 +41,12 @@ void MainWindow::prepareDirView()
     ui->treeView->setAnimated(true);
     ui->tableView->sortByColumn(0,Qt::DescendingOrder);
     preparePhotoNameTable("/");
-    //ui->treeView->setRootIndex(model->index("/"));
+    //QFileInfo fdsf = aa.at(0);
+    //fdsf.absolutePath()
+    ui->treeView->setRootIndex(model->index(aa.at(0).absolutePath()));
+    QString labelDriveDir = "Wybierz folder z dysku: ";
+    labelDriveDir.append(aa.at(0).absolutePath());
+    ui->label->setText(labelDriveDir);
 
 
 }
