@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Fri Jun 25 10:29:39 2010
+** Created: Fri 25. Jun 17:08:46 2010
 **      by: Qt User Interface Compiler version 4.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -21,6 +21,7 @@
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
+#include <QtGui/QListView>
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenuBar>
 #include <QtGui/QPushButton>
@@ -54,6 +55,11 @@ public:
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
     QTableView *tableView;
+    QListView *listView;
+    QWidget *verticalLayoutWidget;
+    QVBoxLayout *verticalLayout_2;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -147,14 +153,14 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 81, 137));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 83, 139));
         scrollArea->setWidget(scrollAreaWidgetContents);
 
         gridLayout->addWidget(scrollArea, 1, 0, 1, 1);
 
         horizontalLayoutWidget = new QWidget(centralWidget);
         horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(40, 200, 761, 391));
+        horizontalLayoutWidget->setGeometry(QRect(40, 460, 761, 131));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
@@ -165,10 +171,35 @@ public:
 
         horizontalLayout->addWidget(tableView);
 
+        listView = new QListView(centralWidget);
+        listView->setObjectName(QString::fromUtf8("listView"));
+        listView->setGeometry(QRect(15, 200, 681, 251));
+        verticalLayoutWidget = new QWidget(centralWidget);
+        verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
+        verticalLayoutWidget->setGeometry(QRect(700, 200, 101, 251));
+        verticalLayout_2 = new QVBoxLayout(verticalLayoutWidget);
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        pushButton_2 = new QPushButton(verticalLayoutWidget);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        sizePolicy1.setHeightForWidth(pushButton_2->sizePolicy().hasHeightForWidth());
+        pushButton_2->setSizePolicy(sizePolicy1);
+
+        verticalLayout_2->addWidget(pushButton_2);
+
+        pushButton_3 = new QPushButton(verticalLayoutWidget);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+        sizePolicy1.setHeightForWidth(pushButton_3->sizePolicy().hasHeightForWidth());
+        pushButton_3->setSizePolicy(sizePolicy1);
+
+        verticalLayout_2->addWidget(pushButton_3);
+
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 823, 18));
+        menuBar->setGeometry(QRect(0, 0, 823, 21));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -179,6 +210,8 @@ public:
 
         retranslateUi(MainWindow);
         QObject::connect(treeView, SIGNAL(clicked(QModelIndex)), MainWindow, SLOT(getDirPath()));
+        QObject::connect(pushButton_2, SIGNAL(clicked()), listView, SLOT(selectAll()));
+        QObject::connect(pushButton_3, SIGNAL(clicked()), listView, SLOT(clearSelection()));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -196,6 +229,8 @@ public:
         label->setText(QApplication::translate("MainWindow", "Wybierz folder z dysku: ", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("MainWindow", "Nazwa pliku:", 0, QApplication::UnicodeUTF8));
         label_3->setText(QApplication::translate("MainWindow", "Dysk:", 0, QApplication::UnicodeUTF8));
+        pushButton_2->setText(QApplication::translate("MainWindow", "Zaznacz wszystko", 0, QApplication::UnicodeUTF8));
+        pushButton_3->setText(QApplication::translate("MainWindow", "Odznacz wszystko", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };
