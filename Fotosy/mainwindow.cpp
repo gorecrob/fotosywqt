@@ -100,11 +100,15 @@ void MainWindow::preparePhotoNameTable(QString aParam)
     ui->tableView->hideColumn(2);
     ui->tableView->hideColumn(3);
     ui->tableView->setRootIndex(photosNameModel->index(aParam));
+
 }
 
 void MainWindow::setRootPath(QString iPath)
 {
-    delete model;
-    prepareDirView(iPath);
+    if (model->rootPath() != iPath)
+    {
+        delete model;
+        prepareDirView(iPath);
+    }
     qDebug() << iPath;
 }
