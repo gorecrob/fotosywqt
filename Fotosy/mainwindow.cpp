@@ -6,11 +6,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    //DriveButton butt;
-    //connect(&butt, SIGNAL(Clicked(QString)), this, SLOT(setRootPath(QString)));
     ui->setupUi(this);
     prepareDriveView();
-    //prepareDirView();
 }
 
 MainWindow::~MainWindow()
