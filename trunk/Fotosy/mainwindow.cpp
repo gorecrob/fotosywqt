@@ -3,8 +3,8 @@
 
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+        QMainWindow(parent),
+        ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     prepareDriveView();
@@ -75,10 +75,9 @@ void MainWindow::prepareDirView(QString aDrive)
 
 void MainWindow::getDirPath()
 {
-iDirPath = "";
-iDirPath = model->filePath(ui->treeView->currentIndex());
-ui->lineEdit->setText(iDirPath);
-preparePhotoNameTable(iDirPath);
+    iDirPath = model->filePath(ui->treeView->currentIndex());
+    ui->lineEdit->setText(iDirPath);
+    preparePhotoNameTable(iDirPath);
 }
 
 void MainWindow::preparePhotoNameTable(QString aParam)
@@ -93,10 +92,19 @@ void MainWindow::preparePhotoNameTable(QString aParam)
     photosNameModel->setNameFilterDisables(false);
     ui->tableView->setModel(photosNameModel);
     ui->tableView->sortByColumn(0,Qt::AscendingOrder);
-    ui->tableView->hideColumn(1);
-    ui->tableView->hideColumn(2);
-    ui->tableView->hideColumn(3);
+    //ui->tableView->hideColumn(1);
+    //ui->tableView->hideColumn(2);
+    //ui->tableView->hideColumn(3);
+    //ui->tableView->SelectionMode
     ui->tableView->setRootIndex(photosNameModel->index(aParam));
+
+    ui->listView->setViewMode(QListView::IconMode);
+    ui->listView->setModel(photosNameModel);
+    ui->listView->setModelColumn(0);
+    ui->listView->setSelectionMode(QAbstractItemView::MultiSelection);
+    ui->listView->setWordWrap(false);
+    ui->listView->setResizeMode(QListView::Adjust);
+    ui->listView->setRootIndex(photosNameModel->index(aParam));
 
 }
 

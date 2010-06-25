@@ -174,8 +174,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>81</width>
-           <height>137</height>
+           <width>83</width>
+           <height>139</height>
           </rect>
          </property>
         </widget>
@@ -188,14 +188,62 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>200</y>
+      <y>460</y>
       <width>761</width>
-      <height>391</height>
+      <height>131</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QTableView" name="tableView"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QListView" name="listView">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>200</y>
+      <width>681</width>
+      <height>251</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>200</y>
+      <width>101</width>
+      <height>251</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Zaznacz wszystko</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Odznacz wszystko</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -206,7 +254,7 @@
      <x>0</x>
      <y>0</y>
      <width>823</width>
-     <height>18</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
@@ -230,12 +278,44 @@
    <slot>getDirPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>100</x>
-     <y>88</y>
+     <x>192</x>
+     <y>141</y>
     </hint>
     <hint type="destinationlabel">
      <x>254</x>
      <y>38</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>listView</receiver>
+   <slot>selectAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>727</x>
+     <y>253</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>644</x>
+     <y>266</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>listView</receiver>
+   <slot>clearSelection()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>743</x>
+     <y>285</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>609</x>
+     <y>314</y>
     </hint>
    </hints>
   </connection>
