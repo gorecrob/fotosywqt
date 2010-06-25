@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed Jun 23 14:07:47 2010
+** Created: Fri Jun 25 10:29:39 2010
 **      by: Qt User Interface Compiler version 4.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -24,6 +24,7 @@
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenuBar>
 #include <QtGui/QPushButton>
+#include <QtGui/QScrollArea>
 #include <QtGui/QStatusBar>
 #include <QtGui/QTableView>
 #include <QtGui/QToolBar>
@@ -47,6 +48,9 @@ public:
     QPushButton *pushButton;
     QLabel *label;
     QLabel *label_2;
+    QLabel *label_3;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
     QTableView *tableView;
@@ -59,7 +63,7 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(823, 761);
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
@@ -73,7 +77,7 @@ public:
         groupBox->setGeometry(QRect(10, 10, 801, 181));
         gridLayoutWidget = new QWidget(groupBox);
         gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(10, 10, 781, 161));
+        gridLayoutWidget->setGeometry(QRect(10, 10, 781, 162));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
@@ -81,6 +85,7 @@ public:
         gridLayout->setContentsMargins(0, 0, 0, 0);
         treeView = new QTreeView(gridLayoutWidget);
         treeView->setObjectName(QString::fromUtf8("treeView"));
+        treeView->setMinimumSize(QSize(400, 0));
         treeView->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         treeView->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         treeView->setAutoScroll(true);
@@ -88,7 +93,7 @@ public:
         treeView->setWordWrap(false);
         treeView->header()->setVisible(false);
 
-        gridLayout->addWidget(treeView, 1, 0, 1, 1);
+        gridLayout->addWidget(treeView, 1, 1, 1, 1);
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
@@ -105,25 +110,51 @@ public:
 
         pushButton = new QPushButton(gridLayoutWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
+        pushButton->setSizePolicy(sizePolicy1);
+        pushButton->setMaximumSize(QSize(100, 30));
+        pushButton->setLayoutDirection(Qt::RightToLeft);
 
         verticalLayout->addWidget(pushButton);
 
 
-        gridLayout->addLayout(verticalLayout, 1, 1, 1, 1);
+        gridLayout->addLayout(verticalLayout, 1, 2, 1, 1);
 
         label = new QLabel(gridLayoutWidget);
         label->setObjectName(QString::fromUtf8("label"));
 
-        gridLayout->addWidget(label, 0, 0, 1, 1);
+        gridLayout->addWidget(label, 0, 1, 1, 1);
 
         label_2 = new QLabel(gridLayoutWidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
-        gridLayout->addWidget(label_2, 0, 1, 1, 1);
+        gridLayout->addWidget(label_2, 0, 2, 1, 1);
+
+        label_3 = new QLabel(gridLayoutWidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+
+        gridLayout->addWidget(label_3, 0, 0, 1, 1);
+
+        scrollArea = new QScrollArea(gridLayoutWidget);
+        scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
+        sizePolicy1.setHeightForWidth(scrollArea->sizePolicy().hasHeightForWidth());
+        scrollArea->setSizePolicy(sizePolicy1);
+        scrollArea->setMinimumSize(QSize(85, 0));
+        scrollArea->setMaximumSize(QSize(85, 16777215));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 81, 137));
+        scrollArea->setWidget(scrollAreaWidgetContents);
+
+        gridLayout->addWidget(scrollArea, 1, 0, 1, 1);
 
         horizontalLayoutWidget = new QWidget(centralWidget);
         horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(40, 400, 731, 191));
+        horizontalLayoutWidget->setGeometry(QRect(40, 200, 761, 391));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
@@ -162,8 +193,9 @@ public:
          << QApplication::translate("MainWindow", "_NumerZdj\304\231cia", 0, QApplication::UnicodeUTF8)
         );
         pushButton->setText(QApplication::translate("MainWindow", "OK", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("MainWindow", "Wybierz folder:", 0, QApplication::UnicodeUTF8));
+        label->setText(QApplication::translate("MainWindow", "Wybierz folder z dysku: ", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("MainWindow", "Nazwa pliku:", 0, QApplication::UnicodeUTF8));
+        label_3->setText(QApplication::translate("MainWindow", "Dysk:", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };
