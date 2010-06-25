@@ -6,8 +6,11 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    //DriveButton butt;
+    //connect(&butt, SIGNAL(Clicked(QString)), this, SLOT(setRootPath(QString)));
     ui->setupUi(this);
-    prepareDirView();
+    prepareDriveView();
+    //prepareDirView();
 }
 
 MainWindow::~MainWindow()
@@ -27,11 +30,36 @@ void MainWindow::changeEvent(QEvent *e)
     }
 }
 
-void MainWindow::prepareDirView()
+
+void MainWindow::prepareDriveView()
 {
-    QFileInfoList aa =  QDir::drives();
+    QFileInfoList driveList =  QDir::drives();
+    DriveButton *tempToolDriveButt;
+    QVBoxLayout *tempLayout = new QVBoxLayout();
+    tempLayout->setMargin(1);
+    tempLayout->setSpacing(1);
+    QWidget *tempWidget = new QWidget();
+    tempWidget->setLayout(tempLayout);
+    for (int i=0; i< driveList.count(); i++)
+    {
+        if (driveList.at(i).isWritable())
+        {
+            tempToolDriveButt = new DriveButton(driveList.at(i).absolutePath());
+            tempToolDriveButt->setMaximumSize(61,61);
+            tempToolDriveButt->setMinimumSize(61,61);
+            tempToolDriveButt->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Minimum);
+            tempLayout->addWidget(tempToolDriveButt);
+            connect(tempToolDriveButt, SIGNAL(Clicked(QString)), this, SLOT(setRootPath(QString)));
+        }
+    }
+    ui->scrollArea->setWidget(tempWidget);
+    ui->scrollArea->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    prepareDirView(driveList.at(0).absolutePath());
+}
+void MainWindow::prepareDirView(QString aDrive)
+{
     model = new QFileSystemModel;
-    model->setRootPath(QDir::rootPath());
+    model->setRootPath(aDrive);
     model->setFilter(QDir::Dirs | QDir::Drives | QDir::NoDotAndDotDot);
     ui->treeView->setModel(model);
     ui->treeView->hideColumn(1);
@@ -40,14 +68,11 @@ void MainWindow::prepareDirView()
     ui->treeView->resizeColumnToContents(0);
     ui->treeView->setAnimated(true);
     ui->tableView->sortByColumn(0,Qt::DescendingOrder);
-    preparePhotoNameTable("/");
-    //QFileInfo fdsf = aa.at(0);
-    //fdsf.absolutePath()
-    ui->treeView->setRootIndex(model->index(aa.at(0).absolutePath()));
+    ui->treeView->setRootIndex(model->index(aDrive));
     QString labelDriveDir = "Wybierz folder z dysku: ";
-    labelDriveDir.append(aa.at(0).absolutePath());
+    labelDriveDir.append(aDrive);
     ui->label->setText(labelDriveDir);
-
+    preparePhotoNameTable(aDrive);
 
 }
 
@@ -75,10 +100,11 @@ void MainWindow::preparePhotoNameTable(QString aParam)
     ui->tableView->hideColumn(2);
     ui->tableView->hideColumn(3);
     ui->tableView->setRootIndex(photosNameModel->index(aParam));
-    //int counter = photosNameModel->rowCount(photosNameModel->setRootPath(aParam));
-    //QVariant var = photosNameModel->data(photosNameModel->index(aParam),Qt::DisplayRole);
-    //counter = counter+0;
+}
 
-
-
+void MainWindow::setRootPath(QString iPath)
+{
+    delete model;
+    prepareDirView(iPath);
+    qDebug() << iPath;
 }

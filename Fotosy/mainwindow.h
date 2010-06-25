@@ -7,6 +7,8 @@
 #include <QWidget>
 #include <QCheckBox>
 #include <dirent.h>
+#include <drivebutton.h>
+#include <QDebug>
 
 namespace Ui {
     class MainWindow;
@@ -20,18 +22,19 @@ public:
 
 protected:
     void changeEvent(QEvent *e);
-    void prepareDirView();
+    void prepareDirView(QString);
+    void prepareDriveView();
     void preparePhotoNameTable(QString aParam);
 
 private:
     Ui::MainWindow *ui;
-    //QTreeView *treeView;
     QString iDirPath;
     QFileSystemModel *model;
-    //QString *photosNameTable;
+
 
 public slots:
    void getDirPath();
+   void setRootPath(QString );
 };
 
 #endif // MAINWINDOW_H
