@@ -125,19 +125,34 @@ void MainWindow::getSelectedIDListView()
         ui->progressBar->setMaximum(numSelected);
         if (ui->comboBox->currentIndex() == 0)
         {
+
+            Cexif exif;
+            FILE* hFile=fopen(fPath.toAscii(),"rbw");
+            exif.DecodeExif(hFile);
+            QVariant dateVar  = exif.m_exifinfo->DateTime;
+            QString photoDate = dateVar.toString();
+            fclose(hFile);
+            delete hFile;
+
             QString toNum;
             toNum = toNum.setNum(i+1);
             fPath_ren += ui->lineEdit->text().append("_").append(toNum).append(photoNameString.right(cutExtension));
-            dir.rename(fPath, fPath_ren);
+            int ret = rename(fPath.toAscii(), fPath_ren.toAscii());
+
+            ret = ret+0;
         }
         else
         {
             Cexif exif;
             FILE* hFile=fopen(fPath.toAscii(),"rbw");
             exif.DecodeExif(hFile);
-            QVariant dateVar  = exif.m_exifinfo->DateTime;
-            QString photoDate = dateVar.toString();
-            /*if (photoDate != "")
+            QString photoDate = "";
+            for (int z=0; z<19; z++)
+                photoDate  += exif.m_exifinfo->DateTime[z];
+            fclose(hFile);
+            delete hFile;
+            //QString photoDate = dateVar.toString();
+            if (photoDate != "")
             {
                 photoDate = photoDate.replace(4,"_");
                 photoDate = photoDate.remove(16);
@@ -149,14 +164,15 @@ void MainWindow::getSelectedIDListView()
             {
             photoDate = photoDate.setNum(i+1);
             }
-            */
-            photoDate = "2005";
-            QString sdff = "sex";
+
+            //photoDate = "2005";
+            //QString sdff = "sex";
 
 
-            fPath_ren += ui->lineEdit->text().append("_").append(sdff).append(photoNameString.right(cutExtension));
-            dir.rename(fPath, fPath_ren);
-            fclose(hFile);
+            fPath_ren += ui->lineEdit->text().append("_").append(photoDate).append(photoNameString.right(cutExtension));
+            int ret = rename(fPath.toAscii(), fPath_ren.toAscii());
+            ret = ret+0;
+
         }
 
         ui->progressBar->setValue(i);
