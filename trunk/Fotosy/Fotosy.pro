@@ -8,6 +8,6 @@ DEPENDPATH += .
 INCLUDEPATH += .
 
 # Input
-HEADERS += drivebutton.h mainwindow.h
+HEADERS += drivebutton.h mainwindow.h include/qmeta/exif.h include/qmeta/exif_data.h include/qmeta/file.h include/qmeta/identifiers.h include/qmeta/image.h include/qmeta/iptc.h include/qmeta/jpeg.h include/qmeta/qmeta.h include/qmeta/standard.h include/qmeta/tiff.h include/qmeta/tiff_header.h include/qmeta/xmp.h
 FORMS += mainwindow.ui
-SOURCES += drivebutton.cpp main.cpp mainwindow.cpp
+SOURCES += drivebutton.cpp main.cpp mainwindow.cpp src/exif.cc src/exif_data.cc src/file.cc src/image.cc src/iptc.cc src/jpeg.cc src/standard.cc src/tiff.cc src/tiff_header.cc src/xmp.cc
