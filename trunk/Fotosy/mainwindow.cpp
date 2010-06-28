@@ -133,6 +133,8 @@ void MainWindow::getSelectedIDListView()
         else
         {
             //TODO exif file from
+            Cexif exif;
+            exif.DecodeExif(hFile);
 
         }
         dir.rename(fPath, fPath_ren);
