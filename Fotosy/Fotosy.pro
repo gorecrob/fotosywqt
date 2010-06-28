@@ -8,6 +8,6 @@ DEPENDPATH += .
 INCLUDEPATH += .
 
 # Input
-HEADERS += drivebutton.h mainwindow.h
+HEADERS += drivebutton.h mainwindow.h EXIF.H
 FORMS += mainwindow.ui
-SOURCES += drivebutton.cpp main.cpp mainwindow.cpp
+SOURCES += drivebutton.cpp main.cpp mainwindow.cpp EXIF.CPP

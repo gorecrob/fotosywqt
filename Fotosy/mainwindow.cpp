@@ -132,9 +132,13 @@ void MainWindow::getSelectedIDListView()
         }
         else
         {
-            //TODO exif file from
             Cexif exif;
+            FILE* hFile=fopen(fPath.toAscii(),"rb");
             exif.DecodeExif(hFile);
+
+            QVariant dsf  = exif.m_exifinfo->DateTime;
+
+            fclose(hFile);
 
         }
         dir.rename(fPath, fPath_ren);
