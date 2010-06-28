@@ -92,10 +92,7 @@ void MainWindow::preparePhotoNameTable(QString aParam)
     photosNameModel->setNameFilterDisables(false);
     ui->tableView->setModel(photosNameModel);
     ui->tableView->sortByColumn(0,Qt::AscendingOrder);
-    //ui->tableView->hideColumn(1);
-    //ui->tableView->hideColumn(2);
-    //ui->tableView->hideColumn(3);
-    //ui->tableView->SelectionMode
+
     ui->tableView->setRootIndex(photosNameModel->index(aParam));
 
     ui->listView->setViewMode(QListView::IconMode);
