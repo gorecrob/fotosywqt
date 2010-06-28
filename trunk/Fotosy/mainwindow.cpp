@@ -116,7 +116,7 @@ void MainWindow::getSelectedIDListView()
         QString fPath = iDirPath;
         QString photoNameString = photoName.toString();
         fPath.append("/").append(photoNameString);
-        QFile file (fPath);
+        //QFile file (fPath);
         QString fPath_ren = fPath;
         fPath_ren.chop(photoNameString.count());
         int dotPos = photoNameString.lastIndexOf(".");
@@ -128,20 +128,38 @@ void MainWindow::getSelectedIDListView()
             QString toNum;
             toNum = toNum.setNum(i+1);
             fPath_ren += ui->lineEdit->text().append("_").append(toNum).append(photoNameString.right(cutExtension));
-            ui->progressBar->setValue(i);
+            dir.rename(fPath, fPath_ren);
         }
         else
         {
             Cexif exif;
-            FILE* hFile=fopen(fPath.toAscii(),"rb");
+            FILE* hFile=fopen(fPath.toAscii(),"rbw");
             exif.DecodeExif(hFile);
+            QVariant dateVar  = exif.m_exifinfo->DateTime;
+            QString photoDate = dateVar.toString();
+            /*if (photoDate != "")
+            {
+                photoDate = photoDate.replace(4,"_");
+                photoDate = photoDate.remove(16);
+                photoDate = photoDate.remove(13);
+                photoDate = photoDate.replace(10,"_");
+                photoDate = photoDate.remove(7);
+            }
+            else
+            {
+            photoDate = photoDate.setNum(i+1);
+            }
+            */
+            photoDate = "2005";
+            QString sdff = "sex";
 
-            QVariant dsf  = exif.m_exifinfo->DateTime;
 
+            fPath_ren += ui->lineEdit->text().append("_").append(sdff).append(photoNameString.right(cutExtension));
+            dir.rename(fPath, fPath_ren);
             fclose(hFile);
-
         }
-        dir.rename(fPath, fPath_ren);
+
+        ui->progressBar->setValue(i);
 
 
     }
