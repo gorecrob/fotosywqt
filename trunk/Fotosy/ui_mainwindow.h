@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Fri 25. Jun 17:08:46 2010
+** Created: Mon Jun 28 12:08:45 2010
 **      by: Qt User Interface Compiler version 4.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -17,17 +17,16 @@
 #include <QtGui/QComboBox>
 #include <QtGui/QGridLayout>
 #include <QtGui/QGroupBox>
-#include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
 #include <QtGui/QListView>
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenuBar>
+#include <QtGui/QProgressBar>
 #include <QtGui/QPushButton>
 #include <QtGui/QScrollArea>
 #include <QtGui/QStatusBar>
-#include <QtGui/QTableView>
 #include <QtGui/QToolBar>
 #include <QtGui/QTreeView>
 #include <QtGui/QVBoxLayout>
@@ -47,14 +46,12 @@ public:
     QLineEdit *lineEdit;
     QComboBox *comboBox;
     QPushButton *pushButton;
+    QProgressBar *progressBar;
     QLabel *label;
     QLabel *label_2;
     QLabel *label_3;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
-    QWidget *horizontalLayoutWidget;
-    QHBoxLayout *horizontalLayout;
-    QTableView *tableView;
     QListView *listView;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout_2;
@@ -126,6 +123,12 @@ public:
 
         verticalLayout->addWidget(pushButton);
 
+        progressBar = new QProgressBar(gridLayoutWidget);
+        progressBar->setObjectName(QString::fromUtf8("progressBar"));
+        progressBar->setValue(24);
+
+        verticalLayout->addWidget(progressBar);
+
 
         gridLayout->addLayout(verticalLayout, 1, 2, 1, 1);
 
@@ -153,30 +156,17 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 83, 139));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 81, 137));
         scrollArea->setWidget(scrollAreaWidgetContents);
 
         gridLayout->addWidget(scrollArea, 1, 0, 1, 1);
 
-        horizontalLayoutWidget = new QWidget(centralWidget);
-        horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(40, 460, 761, 131));
-        horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        tableView = new QTableView(horizontalLayoutWidget);
-        tableView->setObjectName(QString::fromUtf8("tableView"));
-
-        horizontalLayout->addWidget(tableView);
-
         listView = new QListView(centralWidget);
         listView->setObjectName(QString::fromUtf8("listView"));
-        listView->setGeometry(QRect(15, 200, 681, 251));
+        listView->setGeometry(QRect(15, 200, 681, 261));
         verticalLayoutWidget = new QWidget(centralWidget);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(700, 200, 101, 251));
+        verticalLayoutWidget->setGeometry(QRect(700, 200, 101, 262));
         verticalLayout_2 = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -199,7 +189,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 823, 21));
+        menuBar->setGeometry(QRect(0, 0, 823, 18));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -212,6 +202,7 @@ public:
         QObject::connect(treeView, SIGNAL(clicked(QModelIndex)), MainWindow, SLOT(getDirPath()));
         QObject::connect(pushButton_2, SIGNAL(clicked()), listView, SLOT(selectAll()));
         QObject::connect(pushButton_3, SIGNAL(clicked()), listView, SLOT(clearSelection()));
+        QObject::connect(pushButton, SIGNAL(clicked()), MainWindow, SLOT(getSelectedIDListView()));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -222,15 +213,17 @@ public:
         groupBox->setTitle(QString());
         comboBox->clear();
         comboBox->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "_RRRR_MMDD_GodzinaMinutaSekunda", 0, QApplication::UnicodeUTF8)
          << QApplication::translate("MainWindow", "_NumerZdj\304\231cia", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "_RRRR_MMDD_GodzinaMinutaSekunda", 0, QApplication::UnicodeUTF8)
         );
         pushButton->setText(QApplication::translate("MainWindow", "OK", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("MainWindow", "Wybierz folder z dysku: ", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("MainWindow", "Nazwa pliku:", 0, QApplication::UnicodeUTF8));
         label_3->setText(QApplication::translate("MainWindow", "Dysk:", 0, QApplication::UnicodeUTF8));
-        pushButton_2->setText(QApplication::translate("MainWindow", "Zaznacz wszystko", 0, QApplication::UnicodeUTF8));
-        pushButton_3->setText(QApplication::translate("MainWindow", "Odznacz wszystko", 0, QApplication::UnicodeUTF8));
+        pushButton_2->setText(QApplication::translate("MainWindow", "Zaznacz \n"
+"wszystko", 0, QApplication::UnicodeUTF8));
+        pushButton_3->setText(QApplication::translate("MainWindow", "Odznacz \n"
+"wszystko", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

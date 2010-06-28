@@ -64,19 +64,19 @@ void MainWindow::prepareDirView(QString aDrive)
     ui->treeView->hideColumn(3);
     ui->treeView->resizeColumnToContents(0);
     ui->treeView->setAnimated(true);
-    ui->tableView->sortByColumn(0,Qt::DescendingOrder);
     ui->treeView->setRootIndex(model->index(aDrive));
     QString labelDriveDir = "Wybierz folder z dysku: ";
     labelDriveDir.append(aDrive);
     ui->label->setText(labelDriveDir);
     preparePhotoNameTable(aDrive);
 
+
 }
 
 void MainWindow::getDirPath()
 {
     iDirPath = model->filePath(ui->treeView->currentIndex());
-    ui->lineEdit->setText(iDirPath);
+    //ui->lineEdit->setText(iDirPath);
     preparePhotoNameTable(iDirPath);
 }
 
@@ -85,26 +85,63 @@ void MainWindow::preparePhotoNameTable(QString aParam)
     QStringList filterExtensionsList;
     filterExtensionsList.append("*.jpg");
     filterExtensionsList.append("*.jpeg");
-    QFileSystemModel *photosNameModel = new QFileSystemModel;
+    photosNameModel = new QFileSystemModel;
     photosNameModel->setRootPath(aParam);
     photosNameModel->setFilter(QDir::Files);
     photosNameModel->setNameFilters(filterExtensionsList);
     photosNameModel->setNameFilterDisables(false);
-    ui->tableView->setModel(photosNameModel);
-    ui->tableView->sortByColumn(0,Qt::AscendingOrder);
-
-    ui->tableView->setRootIndex(photosNameModel->index(aParam));
-
+    ui->progressBar->setMinimum(0);
+    ui->progressBar->setValue(0);
     ui->listView->setViewMode(QListView::IconMode);
     ui->listView->setModel(photosNameModel);
     ui->listView->setModelColumn(0);
     ui->listView->setSelectionMode(QAbstractItemView::MultiSelection);
-    ui->listView->setWordWrap(false);
-    ui->listView->setResizeMode(QListView::Adjust);
+    ui->listView->setWordWrap(true);
+    ui->listView->setWrapping(true);
+    ui->listView->setResizeMode(QListView::Fixed);
     ui->listView->setRootIndex(photosNameModel->index(aParam));
-
 }
 
+void MainWindow::getSelectedIDListView()
+{
+    QItemSelectionModel* ism = ui->listView->selectionModel();
+
+    QModelIndexList mil = ism->selectedIndexes();
+    int numSelected = mil.count();
+    QDir dir;
+
+    for (int i=0; i<numSelected; i++ )
+    {
+        QVariant photoName = mil.at(i).data();
+        QString fPath = iDirPath;
+        QString photoNameString = photoName.toString();
+        fPath.append("/").append(photoNameString);
+        QFile file (fPath);
+        QString fPath_ren = fPath;
+        fPath_ren.chop(photoNameString.count());
+        int dotPos = photoNameString.lastIndexOf(".");
+        int cutExtension = photoNameString.count() - dotPos;
+        ui->progressBar->setMinimum(0);
+        ui->progressBar->setMaximum(numSelected);
+        if (ui->comboBox->currentIndex() == 0)
+        {
+            QString toNum;
+            toNum = toNum.setNum(i+1);
+            fPath_ren += ui->lineEdit->text().append("_").append(toNum).append(photoNameString.right(cutExtension));
+            ui->progressBar->setValue(i);
+        }
+        else
+        {
+            //TODO exif file from
+
+        }
+        dir.rename(fPath, fPath_ren);
+
+
+    }
+
+
+}
 void MainWindow::setRootPath(QString iPath)
 {
     if (model->rootPath() != iPath)

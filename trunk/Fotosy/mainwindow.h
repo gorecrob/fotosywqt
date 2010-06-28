@@ -30,11 +30,14 @@ private:
     Ui::MainWindow *ui;
     QString iDirPath;
     QFileSystemModel *model;
+    QFileSystemModel *photosNameModel;
 
 
 public slots:
    void getDirPath();
    void setRootPath(QString );
+   void getSelectedIDListView();
+
 };
 
 #endif // MAINWINDOW_H
