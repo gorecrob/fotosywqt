@@ -9,6 +9,7 @@
 #include <dirent.h>
 #include <drivebutton.h>
 #include <QDebug>
+#include <jhead.h>
 
 namespace Ui {
     class MainWindow;
