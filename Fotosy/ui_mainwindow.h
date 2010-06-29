@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue Jun 29 14:54:19 2010
+** Created: Tue 29. Jun 16:24:18 2010
 **      by: Qt User Interface Compiler version 4.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -197,7 +197,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 81, 137));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 83, 139));
         scrollArea->setWidget(scrollAreaWidgetContents);
 
         gridLayout->addWidget(scrollArea, 1, 0, 1, 1);
@@ -459,7 +459,7 @@ public:
         scrollArea_2->setWidgetResizable(true);
         scrollAreaWidgetContents_3 = new QWidget();
         scrollAreaWidgetContents_3->setObjectName(QString::fromUtf8("scrollAreaWidgetContents_3"));
-        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 246, 146));
+        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 248, 148));
         label_image = new QLabel(scrollAreaWidgetContents_3);
         label_image->setObjectName(QString::fromUtf8("label_image"));
         label_image->setGeometry(QRect(0, 0, 250, 150));
@@ -479,7 +479,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 823, 18));
+        menuBar->setGeometry(QRect(0, 0, 823, 21));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -500,7 +500,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0, QApplication::UnicodeUTF8));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Fotosy", 0, QApplication::UnicodeUTF8));
         groupBox->setTitle(QString());
         comboBox->clear();
         comboBox->insertItems(0, QStringList()
