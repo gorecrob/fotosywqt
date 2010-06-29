@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue Jun 29 11:16:52 2010
+** Created: Tue Jun 29 13:17:14 2010
 **      by: Qt User Interface Compiler version 4.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -60,7 +60,6 @@ public:
     QGroupBox *groupBox_2;
     QWidget *gridLayoutWidget_2;
     QGridLayout *gridLayout_2;
-    QLabel *label_4;
     QLabel *label_5;
     QLabel *label_6;
     QLabel *label_7;
@@ -95,6 +94,9 @@ public:
     QLabel *label_metering;
     QLabel *label_exposure;
     QLabel *label_encoding;
+    QScrollArea *scrollArea_2;
+    QWidget *scrollAreaWidgetContents_3;
+    QLabel *label_image;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -226,7 +228,7 @@ public:
 
         groupBox_2 = new QGroupBox(centralWidget);
         groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
-        groupBox_2->setGeometry(QRect(11, 470, 791, 241));
+        groupBox_2->setGeometry(QRect(10, 460, 791, 251));
         gridLayoutWidget_2 = new QWidget(groupBox_2);
         gridLayoutWidget_2->setObjectName(QString::fromUtf8("gridLayoutWidget_2"));
         gridLayoutWidget_2->setGeometry(QRect(10, 20, 771, 221));
@@ -235,11 +237,6 @@ public:
         gridLayout_2->setContentsMargins(11, 11, 11, 11);
         gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
         gridLayout_2->setContentsMargins(0, 0, 0, 0);
-        label_4 = new QLabel(gridLayoutWidget_2);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-
-        gridLayout_2->addWidget(label_4, 0, 4, 2, 1);
-
         label_5 = new QLabel(gridLayoutWidget_2);
         label_5->setObjectName(QString::fromUtf8("label_5"));
         QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
@@ -449,6 +446,30 @@ public:
 
         gridLayout_2->addWidget(label_encoding, 7, 3, 1, 1);
 
+        scrollArea_2 = new QScrollArea(gridLayoutWidget_2);
+        scrollArea_2->setObjectName(QString::fromUtf8("scrollArea_2"));
+        QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Minimum);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(scrollArea_2->sizePolicy().hasHeightForWidth());
+        scrollArea_2->setSizePolicy(sizePolicy3);
+        scrollArea_2->setMinimumSize(QSize(250, 0));
+        scrollArea_2->setMaximumSize(QSize(250, 150));
+        scrollArea_2->setWidgetResizable(true);
+        scrollAreaWidgetContents_3 = new QWidget();
+        scrollAreaWidgetContents_3->setObjectName(QString::fromUtf8("scrollAreaWidgetContents_3"));
+        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 246, 146));
+        label_image = new QLabel(scrollAreaWidgetContents_3);
+        label_image->setObjectName(QString::fromUtf8("label_image"));
+        label_image->setGeometry(QRect(0, 0, 250, 150));
+        sizePolicy3.setHeightForWidth(label_image->sizePolicy().hasHeightForWidth());
+        label_image->setSizePolicy(sizePolicy3);
+        label_image->setMinimumSize(QSize(250, 150));
+        label_image->setMaximumSize(QSize(250, 150));
+        scrollArea_2->setWidget(scrollAreaWidgetContents_3);
+
+        gridLayout_2->addWidget(scrollArea_2, 1, 4, 7, 1);
+
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
@@ -489,7 +510,6 @@ public:
         pushButton_3->setText(QApplication::translate("MainWindow", "Odznacz \n"
 "wszystko", 0, QApplication::UnicodeUTF8));
         groupBox_2->setTitle(QApplication::translate("MainWindow", "Foto info", 0, QApplication::UnicodeUTF8));
-        label_4->setText(QApplication::translate("MainWindow", "TextLabel", 0, QApplication::UnicodeUTF8));
         label_5->setText(QApplication::translate("MainWindow", "Camera make:", 0, QApplication::UnicodeUTF8));
         label_6->setText(QApplication::translate("MainWindow", "Camera model:", 0, QApplication::UnicodeUTF8));
         label_7->setText(QApplication::translate("MainWindow", "Date/Time:", 0, QApplication::UnicodeUTF8));
@@ -524,6 +544,7 @@ public:
         label_metering->setText(QString());
         label_exposure->setText(QString());
         label_encoding->setText(QString());
+        label_image->setText(QString());
     } // retranslateUi
 
 };
