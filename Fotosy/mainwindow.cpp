@@ -37,6 +37,8 @@ void MainWindow::prepareDriveView()
     tempLayout->setSpacing(1);
     QWidget *tempWidget = new QWidget();
     tempWidget->setLayout(tempLayout);
+
+    ui->label_image->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
     for (int i=0; i< driveList.count(); i++)
     {
         if (driveList.at(i).isWritable())
@@ -187,6 +189,7 @@ void MainWindow::getSelectedItem()
         ui->label_X_reso->setText("");
         ui->label_Y_reso->setText("");
         ui->groupBox_2->setTitle("Foto info:");
+        ui->label_image->clear();
     }
     else
     {
@@ -261,6 +264,13 @@ void MainWindow::getSelectedItem()
             float Yresolution;
             float ResolutionUnit;
             float Brightness;
+
+            //Image insert
+            QImage image(fPath);
+            QSize imgSize(250,150);
+            QImage newImage = image.scaled(imgSize, Qt::KeepAspectRatio, Qt::FastTransformation);
+            ui->label_image->setAlignment(Qt::AlignCenter);
+            ui->label_image->setPixmap(QPixmap::fromImage(newImage));
 
 
             fclose(hFile);

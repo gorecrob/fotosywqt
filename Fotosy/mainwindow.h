@@ -10,6 +10,7 @@
 #include <drivebutton.h>
 #include <QDebug>
 #include <EXIF.H>
+#include <QLabel>
 
 namespace Ui {
     class MainWindow;
