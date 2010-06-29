@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue Jun 29 13:17:14 2010
+** Created: Tue Jun 29 14:54:19 2010
 **      by: Qt User Interface Compiler version 4.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -93,10 +93,11 @@ public:
     QLabel *label_aperture;
     QLabel *label_metering;
     QLabel *label_exposure;
-    QLabel *label_encoding;
+    QLabel *label_compression;
     QScrollArea *scrollArea_2;
     QWidget *scrollAreaWidgetContents_3;
     QLabel *label_image;
+    QLabel *label_4;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -228,7 +229,7 @@ public:
 
         groupBox_2 = new QGroupBox(centralWidget);
         groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
-        groupBox_2->setGeometry(QRect(10, 460, 791, 251));
+        groupBox_2->setGeometry(QRect(10, 469, 791, 250));
         gridLayoutWidget_2 = new QWidget(groupBox_2);
         gridLayoutWidget_2->setObjectName(QString::fromUtf8("gridLayoutWidget_2"));
         gridLayoutWidget_2->setGeometry(QRect(10, 20, 771, 221));
@@ -441,10 +442,10 @@ public:
 
         gridLayout_2->addWidget(label_exposure, 6, 3, 1, 1);
 
-        label_encoding = new QLabel(gridLayoutWidget_2);
-        label_encoding->setObjectName(QString::fromUtf8("label_encoding"));
+        label_compression = new QLabel(gridLayoutWidget_2);
+        label_compression->setObjectName(QString::fromUtf8("label_compression"));
 
-        gridLayout_2->addWidget(label_encoding, 7, 3, 1, 1);
+        gridLayout_2->addWidget(label_compression, 7, 3, 1, 1);
 
         scrollArea_2 = new QScrollArea(gridLayoutWidget_2);
         scrollArea_2->setObjectName(QString::fromUtf8("scrollArea_2"));
@@ -469,6 +470,11 @@ public:
         scrollArea_2->setWidget(scrollAreaWidgetContents_3);
 
         gridLayout_2->addWidget(scrollArea_2, 1, 4, 7, 1);
+
+        label_4 = new QLabel(gridLayoutWidget_2);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+
+        gridLayout_2->addWidget(label_4, 0, 4, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -509,7 +515,7 @@ public:
 "wszystko", 0, QApplication::UnicodeUTF8));
         pushButton_3->setText(QApplication::translate("MainWindow", "Odznacz \n"
 "wszystko", 0, QApplication::UnicodeUTF8));
-        groupBox_2->setTitle(QApplication::translate("MainWindow", "Foto info", 0, QApplication::UnicodeUTF8));
+        groupBox_2->setTitle(QApplication::translate("MainWindow", "Foto info:", 0, QApplication::UnicodeUTF8));
         label_5->setText(QApplication::translate("MainWindow", "Camera make:", 0, QApplication::UnicodeUTF8));
         label_6->setText(QApplication::translate("MainWindow", "Camera model:", 0, QApplication::UnicodeUTF8));
         label_7->setText(QApplication::translate("MainWindow", "Date/Time:", 0, QApplication::UnicodeUTF8));
@@ -526,7 +532,7 @@ public:
         label_18->setText(QApplication::translate("MainWindow", "ISO eqiuv:", 0, QApplication::UnicodeUTF8));
         label_19->setText(QApplication::translate("MainWindow", "Metering mode:", 0, QApplication::UnicodeUTF8));
         label_20->setText(QApplication::translate("MainWindow", "Exposure:", 0, QApplication::UnicodeUTF8));
-        label_21->setText(QApplication::translate("MainWindow", "Encoding:", 0, QApplication::UnicodeUTF8));
+        label_21->setText(QApplication::translate("MainWindow", "Compression:", 0, QApplication::UnicodeUTF8));
         label_camera_make->setText(QString());
         label_iso->setText(QString());
         label_camera_model->setText(QString());
@@ -543,8 +549,9 @@ public:
         label_aperture->setText(QString());
         label_metering->setText(QString());
         label_exposure->setText(QString());
-        label_encoding->setText(QString());
+        label_compression->setText(QString());
         label_image->setText(QString());
+        label_4->setText(QApplication::translate("MainWindow", "Podgl\304\205d:", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };
