@@ -38,6 +38,7 @@ public slots:
    void getDirPath();
    void setRootPath(QString );
    void getSelectedIDListView();
+   void getSelectedItem();
 
 };
 
