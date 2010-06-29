@@ -139,7 +139,9 @@ void MainWindow::getSelectedIDListView()
             {
                 QString photoDate = "";
                 Cexif exif;
-                FILE* hFile=fopen(fPath.toAscii(),"rb");
+                QFile *file = new QFile(fPath);
+                file->open(QIODevice::ReadOnly);
+                FILE* hFile=fdopen(file->handle(),"rb");
                 exif.DecodeExif(hFile);
                     for (int z=0; z<19; z++)
                         photoDate  += exif.m_exifinfo->DateTime[z];
@@ -157,6 +159,8 @@ void MainWindow::getSelectedIDListView()
                 }
                 fPath_ren += ui->lineEdit->text().append("_").append(photoDate).append(photoNameString.right(cutExtension));
                 dir.rename(fPath, fPath_ren);
+                file->close();
+                delete file;
             }
         }
         ui->progressBar->setValue(i+1);
@@ -177,7 +181,7 @@ void MainWindow::getSelectedItem()
         ui->label_camera_model->setText("");
         ui->label_ccd->setText("");
         ui->label_date->setText("");
-        ui->label_encoding->setText("");
+        ui->label_compression->setText("");
         ui->label_exif->setText("");
         ui->label_exposure->setText("");
         ui->label_exposure_time->setText("");
@@ -204,7 +208,9 @@ void MainWindow::getSelectedItem()
         {
             ui->groupBox_2->setTitle("Foto info: " + photoName.toString());
             Cexif exif;
-            FILE* hFile=fopen(fPath.toAscii(),"rb");
+            QFile *file = new QFile(fPath);
+            file->open(QIODevice::ReadOnly);
+            FILE* hFile=fdopen(file->handle(),"rb");
             exif.DecodeExif(hFile);
             //Date/time
             QString photoDate = "";
@@ -247,23 +253,69 @@ void MainWindow::getSelectedItem()
                 ui->label_flash->setText("Yes");
 
             //float FocalLength;
-            float ExposureTime;
-            float ApertureFNumber;
-            float Distance;
-            float CCDWidth;
-            float ExposureBias;
-            int   Whitebalance;
-            int   MeteringMode;
-            int   ExposureProgram;
-            int   ISOequivalent;
-            int   CompressionLevel;
-            float FocalplaneXRes;
-            float FocalplaneYRes;
-            float FocalplaneUnits;
-            float Xresolution;
-            float Yresolution;
-            float ResolutionUnit;
-            float Brightness;
+            QString focalLen;
+            focalLen = focalLen.setNum(exif.m_exifinfo->FocalLength);
+            ui->label_focal->setText(focalLen + " mm");
+
+            //float ExposureTime;
+            QString exposureTim;
+            exposureTim = exposureTim.setNum(exif.m_exifinfo->ExposureTime);
+            ui->label_exposure_time->setText(exposureTim + " sec.");
+            //float ApertureFNumber;
+            QString aperture;
+            aperture = aperture.setNum(exif.m_exifinfo->ApertureFNumber);
+            ui->label_aperture->setText("F/" + aperture);
+
+            //float CCDWidth;
+            QString ccd;
+            ccd = ccd.setNum(exif.m_exifinfo->CCDWidth);
+            ui->label_ccd->setText(ccd + " mm");
+
+            //int   ExposureProgram;
+            switch ( exif.m_exifinfo->ExposureProgram)
+            {
+            case 2:
+                ui->label_exposure->setText("program (auto)");
+                break;
+            default:
+                ui->label_exposure->setText("program (semi-auto)");
+                break;
+            }
+            //int   MeteringMode;
+            switch(exif.m_exifinfo->MeteringMode)
+            {
+            case 2:
+                ui->label_metering->setText("center weight");
+                break;
+            case 3:
+                ui->label_metering->setText("spot");
+                break;
+            case 5:
+                ui->label_metering->setText("matrix");
+                break;
+            default:
+                ui->label_metering->setText("No data");
+                break;
+            }
+
+            //int   ISOequivalent;
+            QString isoEq;
+            isoEq = isoEq.setNum(exif.m_exifinfo->ISOequivalent);
+            ui->label_iso->setText(isoEq);
+
+            //float Xresolution;
+            QString xReso;
+            xReso = xReso.setNum(exif.m_exifinfo->Xresolution);
+            ui->label_X_reso->setText(xReso);
+            //float Yresolution;
+            QString yReso;
+            yReso = yReso.setNum(exif.m_exifinfo->Yresolution);
+            ui->label_Y_reso->setText(yReso);
+
+            //float Brightness;
+            QString brightness;
+            brightness = brightness.setNum(exif.m_exifinfo->Brightness);
+            ui->label_brightness->setText(brightness);
 
             //Image insert
             QImage image(fPath);
@@ -272,8 +324,26 @@ void MainWindow::getSelectedItem()
             ui->label_image->setAlignment(Qt::AlignCenter);
             ui->label_image->setPixmap(QPixmap::fromImage(newImage));
 
+            //int CompressionLevel
+            switch(exif.m_exifinfo->CompressionLevel)
+            {
+            case 1:
+                ui->label_compression->setText("Jpeg Quality: basic");
+                break;
+            case 2:
+                ui->label_compression->setText("Jpeg Quality: normal");
+                break;
+            case 4:
+                ui->label_compression->setText("Jpeg Quality: fine");
+                break;
+            default:
+                ui->label_compression->setText("No Data");
+                break;
+           }
 
             fclose(hFile);
+            file->close();
+            delete file;
         }
     }
 
