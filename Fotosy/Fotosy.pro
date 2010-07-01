@@ -11,3 +11,8 @@ INCLUDEPATH += .
 HEADERS += drivebutton.h mainwindow.h EXIF.H
 FORMS += mainwindow.ui
 SOURCES += drivebutton.cpp main.cpp mainwindow.cpp EXIF.CPP
+
+
+wince*: {
+   DEPLOYMENT_PLUGIN += qjpeg qmng qgif
+}

@@ -11,6 +11,7 @@
 #include <QDebug>
 #include <EXIF.H>
 #include <QLabel>
+#include <QImage>
 
 namespace Ui {
     class MainWindow;
