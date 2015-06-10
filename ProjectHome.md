@@ -1,0 +1,1 @@
+qt fotosy, program testowy w QT do zmiany nazw plików na podstawie exifa z jpg
